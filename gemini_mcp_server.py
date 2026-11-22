@@ -9,7 +9,7 @@ mcp = FastMCP("Gemini & ChatGPT API Server")
 # Configuration
 # ----------------------------------------------------
 
-# Gemini Settings (defaulting to local gemini-web2api)
+# Gemini Settings (local gemini-web2api proxy — FREE, no API key needed)
 GEMINI_URL = os.getenv(
     "GEMINI_BASE_URL",
     "http://127.0.0.1:8081/v1"
@@ -20,15 +20,15 @@ GEMINI_KEY = os.getenv(
     "sk-gemini-local"
 )
 
-# ChatGPT / OpenAI Settings (defaults to OpenAI API or custom proxy/web2api)
+# ChatGPT Settings (local chatgpt-web2api proxy — FREE, uses your browser session)
 CHATGPT_URL = os.getenv(
     "CHATGPT_BASE_URL",
-    os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+    "http://127.0.0.1:8080/v1"
 )
 
 CHATGPT_KEY = os.getenv(
     "CHATGPT_API_KEY",
-    os.getenv("OPENAI_API_KEY", "")
+    "sk-chatgpt-local"
 )
 
 
@@ -42,7 +42,7 @@ async def ask_gemini(
     model: str = "gemini-3.6-flash",
     system_prompt: str | None = None
 ) -> str:
-    """Ask a Gemini model through the local gemini-web2api server.
+    """Ask a Gemini model through the local gemini-web2api proxy (FREE).
 
     Args:
         prompt: The question or message for Gemini.
@@ -84,14 +84,14 @@ async def ask_gemini(
 @mcp.tool()
 async def ask_chatgpt(
     prompt: str,
-    model: str = "gpt-4o",
+    model: str = "auto",
     system_prompt: str | None = None
 ) -> str:
-    """Ask a ChatGPT / OpenAI model through OpenAI API or compatible proxy/Web2API.
+    """Ask a ChatGPT model through the local chatgpt-web2api proxy (FREE).
 
     Args:
         prompt: The question or message for ChatGPT.
-        model: Model to use (e.g., 'gpt-4o', 'gpt-4o-mini', 'o1', 'o3-mini', 'gpt-4-turbo').
+        model: Model to use (e.g., 'auto', 'gpt-4o', 'gpt-4o-mini', 'o1', 'o3-mini').
         system_prompt: Optional system prompt to instruct the model.
     """
     headers = {
@@ -134,16 +134,16 @@ async def ask_ai(
     model: str | None = None,
     system_prompt: str | None = None
 ) -> str:
-    """Query either Gemini or ChatGPT based on provider selection.
+    """Query either Gemini or ChatGPT based on provider selection. Both are FREE.
 
     Args:
         prompt: The question or message.
-        provider: 'gemini' or 'chatgpt' / 'openai' (default is 'gemini').
-        model: Optional model override. Defaults to 'gemini-3.6-flash' or 'gpt-4o'.
+        provider: 'gemini' or 'chatgpt' (default is 'gemini').
+        model: Optional model override. Defaults to 'gemini-3.6-flash' or 'auto'.
         system_prompt: Optional system prompt.
     """
     if provider.lower() in ("chatgpt", "openai"):
-        selected_model = model or "gpt-4o"
+        selected_model = model or "auto"
         return await ask_chatgpt(prompt, model=selected_model, system_prompt=system_prompt)
     else:
         selected_model = model or "gemini-3.6-flash"

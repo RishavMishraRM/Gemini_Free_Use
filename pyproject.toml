@@ -1,7 +1,7 @@
 [project]
 name = "web-api"
 version = "0.1.0"
-description = "Unified FastMCP server for Gemini (free via web2api) and ChatGPT (OpenAI API)"
+description = "Unified FastMCP server for Gemini and ChatGPT — both free via local web2api proxies"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = []

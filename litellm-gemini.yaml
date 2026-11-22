@@ -1,5 +1,5 @@
 model_list:
-  # Gemini Models (routed to local gemini-web2api)
+  # Gemini Models (routed to local gemini-web2api on :8081 — FREE)
   - model_name: gemini-3.6-flash
     litellm_params:
       model: openai/gemini-3.6-flash
@@ -18,16 +18,24 @@ model_list:
       api_base: http://127.0.0.1:8081/v1
       api_key: sk-gemini-local
 
-  # ChatGPT / OpenAI Models
+  # ChatGPT Models (routed to local chatgpt-web2api on :8080 — FREE)
   - model_name: gpt-4o
     litellm_params:
-      model: gpt-4o
-      api_key: os.environ/OPENAI_API_KEY
+      model: openai/gpt-4o
+      api_base: http://127.0.0.1:8080/v1
+      api_key: sk-chatgpt-local
 
   - model_name: gpt-4o-mini
     litellm_params:
-      model: gpt-4o-mini
-      api_key: os.environ/OPENAI_API_KEY
+      model: openai/gpt-4o-mini
+      api_base: http://127.0.0.1:8080/v1
+      api_key: sk-chatgpt-local
+
+  - model_name: chatgpt-auto
+    litellm_params:
+      model: openai/auto
+      api_base: http://127.0.0.1:8080/v1
+      api_key: sk-chatgpt-local
 
 litellm_settings:
   drop_params: true
