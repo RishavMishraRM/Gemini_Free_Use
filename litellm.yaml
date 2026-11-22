@@ -1,5 +1,5 @@
 model_list:
-  # Gemini Models (routed to local gemini-web2api on :8081 — FREE)
+  # Gemini → gemini-web2api (FREE, localhost:8081)
   - model_name: gemini-3.6-flash
     litellm_params:
       model: openai/gemini-3.6-flash
@@ -12,13 +12,7 @@ model_list:
       api_base: http://127.0.0.1:8081/v1
       api_key: sk-gemini-local
 
-  - model_name: claude-sonnet-4-5
-    litellm_params:
-      model: openai/gemini-3.6-flash
-      api_base: http://127.0.0.1:8081/v1
-      api_key: sk-gemini-local
-
-  # ChatGPT Models (routed to local chatgpt-web2api on :8080 — FREE)
+  # ChatGPT → chatgpt-web2api (FREE, localhost:8080)
   - model_name: gpt-4o
     litellm_params:
       model: openai/gpt-4o
@@ -31,12 +25,12 @@ model_list:
       api_base: http://127.0.0.1:8080/v1
       api_key: sk-chatgpt-local
 
-  - model_name: chatgpt-auto
+  # Alias: Claude requests → Gemini (free substitute)
+  - model_name: claude-sonnet-4-5
     litellm_params:
-      model: openai/auto
-      api_base: http://127.0.0.1:8080/v1
-      api_key: sk-chatgpt-local
+      model: openai/gemini-3.6-flash
+      api_base: http://127.0.0.1:8081/v1
+      api_key: sk-gemini-local
 
 litellm_settings:
   drop_params: true
-  use_chat_completions_url_for_anthropic_messages: true
