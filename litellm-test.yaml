@@ -1,0 +1,6 @@
+model_list:
+  - model_name: gemini-test
+    litellm_params:
+      model: openai/gemini-3.6-flash
+      api_base: http://127.0.0.1:8081/v1
+      api_key: sk-gemini-local

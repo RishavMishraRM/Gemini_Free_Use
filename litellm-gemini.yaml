@@ -1,0 +1,34 @@
+model_list:
+  # Gemini Models (routed to local gemini-web2api)
+  - model_name: gemini-3.6-flash
+    litellm_params:
+      model: openai/gemini-3.6-flash
+      api_base: http://127.0.0.1:8081/v1
+      api_key: sk-gemini-local
+
+  - model_name: gemini-3.5-flash-thinking
+    litellm_params:
+      model: openai/gemini-3.5-flash-thinking
+      api_base: http://127.0.0.1:8081/v1
+      api_key: sk-gemini-local
+
+  - model_name: claude-sonnet-4-5
+    litellm_params:
+      model: openai/gemini-3.6-flash
+      api_base: http://127.0.0.1:8081/v1
+      api_key: sk-gemini-local
+
+  # ChatGPT / OpenAI Models
+  - model_name: gpt-4o
+    litellm_params:
+      model: gpt-4o
+      api_key: os.environ/OPENAI_API_KEY
+
+  - model_name: gpt-4o-mini
+    litellm_params:
+      model: gpt-4o-mini
+      api_key: os.environ/OPENAI_API_KEY
+
+litellm_settings:
+  drop_params: true
+  use_chat_completions_url_for_anthropic_messages: true
