@@ -150,7 +150,22 @@ print("ChatGPT:", resp.choices[0].message.content)
 
 ---
 
-## MCP Tools Reference
+## Antigravity Integration (MCP)
+
+This repository is pre-configured to work directly with **Google Antigravity**:
+
+1. **Global Configuration**: Added to `~/.gemini/antigravity/mcp_config.json`
+2. **Workspace Configuration**: Added to `.agents/mcp_config.json`
+
+### What Antigravity Can Do:
+Once connected, Antigravity automatically discovers and uses:
+- `ask_gemini`: Antigravity can query Gemini directly for answers or second opinions.
+- `ask_chatgpt`: Antigravity can query ChatGPT directly for code suggestions or comparisons.
+- `ask_ai`: Unified query tool.
+
+You can inspect the active server in Antigravity by clicking **Additional Options (...) > MCP Servers**.
+
+---
 
 When connecting this server to Claude Desktop, Cursor, Antigravity, or other MCP clients:
 

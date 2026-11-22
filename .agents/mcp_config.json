@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "web-api": {
+      "command": "c:\\Users\\Rishav\\Disk\\Codes\\Web_API\\.venv\\Scripts\\python.exe",
+      "args": [
+        "c:\\Users\\Rishav\\Disk\\Codes\\Web_API\\gemini_mcp_server.py"
+      ]
+    }
+  }
+}
